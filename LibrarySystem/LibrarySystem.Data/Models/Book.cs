@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +13,7 @@ namespace LibrarySystem.Data.Models
     {
         public Book()
         {
-            BooksCustomersLoans = new HashSet<BooksCustomersLoan>();
+            BooksLoans = new HashSet<BooksLoan>();
         }
 
         [Key]
@@ -35,16 +34,15 @@ namespace LibrarySystem.Data.Models
         [StringLength(100)]
         [Unicode(false)]
         public string Publisher { get; set; }
-        [Column("publication_year", TypeName = "date")]
+        [Column("publication_date", TypeName = "date")]
 		[DataType(DataType.Date)]
-		[DisplayName("Data da Publicação")]
-		public DateTime PublicationYear { get; set; }
+		public DateTime PublicationDate { get; set; }
         [Column("edition")]
         [StringLength(50)]
         [Unicode(false)]
         public string Edition { get; set; }
 
         [InverseProperty("Book")]
-        public virtual ICollection<BooksCustomersLoan> BooksCustomersLoans { get; set; }
+        public virtual ICollection<BooksLoan> BooksLoans { get; set; }
     }
 }

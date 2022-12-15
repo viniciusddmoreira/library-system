@@ -1,0 +1,189 @@
+﻿@model LoanViewModel
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<h1>Novo Empréstimo</h1>
+
+<h4>Preencha os campos abaixo para cadastrar um novo empréstimo</h4>
+<hr />
+<div>
+	<a class="btn btn-primary" asp-action="Index">Voltar</a>
+</div>
+<br />
+<div class="row">
+	<div class="col-md">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div hidden class="form-group">
+				<input id="CustomerId" asp-for="CustomerId" class="form-control" />
+			</div>
+			<div hidden class="form-group">
+				<input id="BookId" asp-for="BookId" class="form-control" />
+			</div>
+			<div class="card">
+				<div class="card-header">Clientes</div>
+				<div class="card-body">
+					<table id="CustomerTable" class="table">
+						<thead>
+							<tr>
+								<th>
+									@Html.DisplayNameFor(model => model.CustomerProp.Cpf)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.CustomerProp.Name)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.CustomerProp.CellNumber)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.CustomerProp.Email)
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.ListCustomer)
+							{
+								<tr onclick="passCustomerId('@item.Id')">
+									<td>
+										@Html.DisplayFor(modelItem => item.Cpf)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.CellNumber)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Email)
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">Livros</div>
+				<div class="card-body">
+					<table id="BookTable" class="table">
+						<thead>
+							<tr>
+								<th>
+									@Html.DisplayNameFor(model => model.BookProp.Name)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.BookProp.Author)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.BookProp.Publisher)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.BookProp.PublicationDate)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.BookProp.Edition)
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.ListBook)
+							{
+								<tr onclick="passBookId('@item.Id')">
+									<td>
+										@Html.DisplayFor(modelItem => item.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Author)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Publisher)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.PublicationDate)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Edition)
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">Livros</div>
+				<div class="card-body row">
+					<div class="form-group col-md">
+						<label asp-for="LoanDate" class="control-label"></label>
+						<input readonly asp-for="LoanDate" class="form-control" />
+						<span asp-validation-for="LoanDate" class="text-danger"></span>
+					</div>
+					<div class="form-group col-md">
+						<label asp-for="DeliveryDate" class="control-label"></label>
+						<input asp-for="DeliveryDate" class="form-control" />
+						<span asp-validation-for="DeliveryDate" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<input type="submit" value="Salvar" class="btn btn-success" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+	<script>
+		$(document).ready(function () {
+			var customerTable = $('#CustomerTable').DataTable({
+				language: {
+					url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json',
+				},
+			});
+
+			var bookTable = $('#BookTable').DataTable({
+				language: {
+					url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json',
+				},
+			});
+
+			// Customer Table
+			$('#CustomerTable tbody').on('click', 'tr', function () {
+				if ($(this).hasClass('selected')) {
+					$(this).removeClass('selected');
+				} else {
+					customerTable.$('tr.selected').removeClass('selected');
+					$(this).addClass('selected');
+				}
+			});
+
+			// Book Table
+			$('#BookTable tbody').on('click', 'tr', function () {
+				if ($(this).hasClass('selected')) {
+					$(this).removeClass('selected');
+				} else {
+					bookTable.$('tr.selected').removeClass('selected');
+					$(this).addClass('selected');
+				}
+			});
+		});
+
+		function passCustomerId(CustomerId) {
+			document.getElementById('CustomerId').value = CustomerId;
+		}
+
+		function passBookId(BookId) {
+		document.getElementById('BookId').value = BookId ;
+		}
+
+	</script>
+}

@@ -13,7 +13,7 @@ namespace LibrarySystem.Data.Models
     {
         public Customer()
         {
-            BooksCustomersLoans = new HashSet<BooksCustomersLoan>();
+            BooksLoans = new HashSet<BooksLoan>();
         }
 
         [Key]
@@ -60,6 +60,6 @@ namespace LibrarySystem.Data.Models
         public string Email { get; set; }
 
         [InverseProperty("Customer")]
-        public virtual ICollection<BooksCustomersLoan> BooksCustomersLoans { get; set; }
+        public virtual ICollection<BooksLoan> BooksLoans { get; set; }
     }
 }

@@ -19,8 +19,9 @@ namespace LibrarySystem.Data.Models
         }
 
         public virtual DbSet<Book> Books { get; set; }
-        public virtual DbSet<BooksCustomersLoan> BooksCustomersLoans { get; set; }
+        public virtual DbSet<BooksLoan> BooksLoans { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<VwBooksLoan> VwBooksLoans { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,17 +34,22 @@ namespace LibrarySystem.Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BooksCustomersLoan>(entity =>
+            modelBuilder.Entity<BooksLoan>(entity =>
             {
                 entity.HasOne(d => d.Book)
-                    .WithMany(p => p.BooksCustomersLoans)
+                    .WithMany(p => p.BooksLoans)
                     .HasForeignKey(d => d.BookId)
                     .HasConstraintName("FK_books_customers_loan_books");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.BooksCustomersLoans)
+                    .WithMany(p => p.BooksLoans)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_books_customers_loan_customers");
+            });
+
+            modelBuilder.Entity<VwBooksLoan>(entity =>
+            {
+                entity.ToView("vw_books_loan");
             });
 
             OnModelCreatingPartial(modelBuilder);

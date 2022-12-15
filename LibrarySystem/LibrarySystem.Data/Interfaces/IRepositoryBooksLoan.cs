@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibrarySystem.Data.Interfaces
 {
-	public interface IRepositoryBooksCustomersLoan : IRepositoryModel<BooksCustomersLoan>
+	public interface IRepositoryBooksLoan : IRepositoryModel<BooksLoan>
 	{
 	}
 }

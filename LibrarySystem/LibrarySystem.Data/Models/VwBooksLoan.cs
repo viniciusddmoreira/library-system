@@ -8,10 +8,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibrarySystem.Data.Models
 {
-    [Table("books_customers_loan")]
-    public partial class BooksCustomersLoan
+    public partial class VwBooksLoan
     {
-        [Key]
+        [Required]
+        [Column("cpf")]
+        [StringLength(14)]
+        [Unicode(false)]
+        public string Cpf { get; set; }
+        [Required]
+        [Column("customer_name")]
+        [StringLength(100)]
+        [Unicode(false)]
+        public string CustomerName { get; set; }
+        [Required]
+        [Column("book_name")]
+        [StringLength(100)]
+        [Unicode(false)]
+        public string BookName { get; set; }
         [Column("id")]
         public int Id { get; set; }
         [Column("book_id")]
@@ -22,14 +35,7 @@ namespace LibrarySystem.Data.Models
         public DateTime? LoanDate { get; set; }
         [Column("delivery_date", TypeName = "datetime")]
         public DateTime? DeliveryDate { get; set; }
-        [Column("delivered_date")]
-        public bool? DeliveredDate { get; set; }
-
-        [ForeignKey("BookId")]
-        [InverseProperty("BooksCustomersLoans")]
-        public virtual Book Book { get; set; }
-        [ForeignKey("CustomerId")]
-        [InverseProperty("BooksCustomersLoans")]
-        public virtual Customer Customer { get; set; }
+        [Column("returned")]
+        public bool? Returned { get; set; }
     }
 }

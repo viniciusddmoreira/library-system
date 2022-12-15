@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace LibrarySystem.Data.Repositories
 {
-	public class RepositoryBooksCustomersLoan : RepositoryBase<BooksCustomersLoan>, IRepositoryBooksCustomersLoan
+	public class RepositoryVwBooksLoan : RepositoryBase<VwBooksLoan>, IRepositoryVwBooksLoan
 	{
-		public RepositoryBooksCustomersLoan(bool saveChanges = true) : base(saveChanges)
+		public RepositoryVwBooksLoan(bool saveChanges = true) : base(saveChanges)
 		{
 		}
 	}

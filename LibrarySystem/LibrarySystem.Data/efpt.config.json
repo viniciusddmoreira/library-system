@@ -19,12 +19,16 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[books_customers_loan]",
+         "Name": "[dbo].[books_loan]",
          "ObjectType": 0
       },
       {
          "Name": "[dbo].[customers]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vw_books_loan]",
+         "ObjectType": 3
       }
    ],
    "UiHint": "DESKTOP-VTMOVEN.library_db",
