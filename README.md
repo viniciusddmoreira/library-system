@@ -70,7 +70,8 @@ Por fim, o Git foi utilizado como ferramenta de versionamento durante todo o des
 
 ### Tela Novo Empréstimo
 ![image](https://user-images.githubusercontent.com/83368340/208150058-3e5267c3-bc6e-4afe-b4da-17a89b439435.png)
-![image](https://user-images.githubusercontent.com/83368340/208150095-ee262e09-bc44-4bdc-8af1-70408996124c.png)
+![image](https://user-images.githubusercontent.com/83368340/208181044-6405911b-d57c-45bf-afc9-a53b08ea9d85.png)
+
 
 
 
