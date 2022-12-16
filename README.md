@@ -41,7 +41,7 @@ As seguintes tecnologias foram utilizadas:
 - EF Core Power Tools
 - DataTables (plug-in para a biblioteca Javascript jQuery)
 - Bootstrap’s JavaScript modal plugin
-- Bootstrap
+- Bootstrap v5.2.3
 - Git
 
 O projeto foi separado LibrarySystem.Web, que seria a camada de apresentação 
