@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -23,40 +24,48 @@ namespace LibrarySystem.Data.Models
         [Column("cpf")]
         [StringLength(14)]
         [Unicode(false)]
+        [DisplayName("CPF")]
         public string Cpf { get; set; }
         [Required]
         [Column("name")]
         [StringLength(100)]
         [Unicode(false)]
+        [DisplayName("Nome")]
         public string Name { get; set; }
         [Required]
         [Column("address")]
         [StringLength(100)]
         [Unicode(false)]
+        [DisplayName("Endereço")]
         public string Address { get; set; }
         [Required]
         [Column("district")]
         [StringLength(100)]
         [Unicode(false)]
+        [DisplayName("Bairro")]
         public string District { get; set; }
         [Required]
         [Column("city")]
         [StringLength(50)]
         [Unicode(false)]
+        [DisplayName("Cidade")]
         public string City { get; set; }
         [Column("phone_number")]
         [StringLength(13)]
         [Unicode(false)]
+        [DisplayName("Telefone Fixo")]
         public string PhoneNumber { get; set; }
         [Required]
         [Column("cell_number")]
         [StringLength(14)]
         [Unicode(false)]
+        [DisplayName("Telefone Celular")]
         public string CellNumber { get; set; }
         [Required]
         [Column("email")]
         [StringLength(50)]
         [Unicode(false)]
+        [DisplayName("E-mail")]
         public string Email { get; set; }
 
         [InverseProperty("Customer")]

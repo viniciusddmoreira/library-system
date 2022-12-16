@@ -10,10 +10,10 @@ namespace LibrarySystem.Web.Models
 		public int CustomerId { get; set; }
 		public DateTime LoanDate { get; set; }
 		public DateTime DeliveryDate { get; set; }
+		public BooksLoan BooksLoanProp { get; set; }
 
 		public List<Customer> ListCustomer { get; set; }
 		public List<Book> ListBook { get; set; }
-		public BooksLoan BooksLoanProp { get; set; } 
 
 	}
 }

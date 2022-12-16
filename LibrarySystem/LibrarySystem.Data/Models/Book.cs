@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -23,23 +24,28 @@ namespace LibrarySystem.Data.Models
         [Column("name")]
         [StringLength(100)]
         [Unicode(false)]
+        [DisplayName("Nome")]
         public string Name { get; set; }
         [Required]
         [Column("author")]
         [StringLength(100)]
         [Unicode(false)]
+        [DisplayName("Autor")]
         public string Author { get; set; }
         [Required]
         [Column("publisher")]
         [StringLength(100)]
         [Unicode(false)]
+        [DisplayName("Editora")]
         public string Publisher { get; set; }
         [Column("publication_date", TypeName = "date")]
 		[DataType(DataType.Date)]
-		public DateTime PublicationDate { get; set; }
+        [DisplayName("Data de Publicação")]
+        public DateTime PublicationDate { get; set; }
         [Column("edition")]
         [StringLength(50)]
         [Unicode(false)]
+        [DisplayName("Edição")]
         public string Edition { get; set; }
 
         [InverseProperty("Book")]

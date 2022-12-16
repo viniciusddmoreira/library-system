@@ -1,92 +1,89 @@
 ﻿@model IEnumerable<LibrarySystem.Data.Models.VwBooksLoan>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 <h1>Empréstimo de Livros</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="Create">Novo Empréstimo</a>
+	<a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus-circle"></i> Novo Empréstimo</a>
 </p>
 <table id="myTable" class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cpf)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BookName)
-            </th>         
-            <th>
-                @Html.DisplayNameFor(model => model.LoanDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Returned)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookName)
-            </td>        
-            <td>
-                @Html.DisplayFor(modelItem => item.LoanDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Returned)
-            </td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id">Alterar</a>
-                    <a asp-action="Details" class="btn btn-primary m-1" asp-route-id="@item.Id">Detalhes</a>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Cpf)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CustomerName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BookName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LoanDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DeliveryDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Returned)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Cpf)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CustomerName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BookName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LoanDate)
+				</td>
+				@{
+					var styleStatus = "";
 
-                    <!-- Botão para acionar modal -->
-                    <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#DeleteModalCenter-@item.Id">
-                        Excluir
-                    </button>
+					if (item.Returned == true)
+					{
+						styleStatus = "";
+					}
+					else
+					{
+						DateTime dateNow = DateTime.Now.Date;
+						DateTime deliveryDate = item.DeliveryDate.Date;
+						int result = DateTime.Compare(dateNow, deliveryDate);
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="DeleteModalCenter-@item.Id" tabindex="-1" role="dialog" aria-labelledby="DeleteModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="DeleteModalCenterTitle">Excluir Emprestimo de Livro</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Deseja realmente excluir o emprestido do livro @item.BookName ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary m-1" data-dismiss="modal">Cancelar</button>
-                                    <a asp-action="Delete" class="btn btn-danger m-1" asp-route-id="@item.Id">Excluir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-        </tr>
-}
-    </tbody>
+						if (result > 0)
+							styleStatus = "text-white bg-danger";
+						else if (result == 0)
+							styleStatus = "bg-warning";
+						else
+							styleStatus = "text-white bg-success";
+					}
+
+				}
+				<td class="@styleStatus">
+					@Html.DisplayFor(modelItem => item.DeliveryDate)
+				</td>
+				<td>
+					@Html.CheckBoxFor(modelItem => item.Returned, new { onclick = "return false" })
+				</td>
+				<td>
+					<a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+					<a asp-action="Details" class="btn btn-primary m-1" asp-route-id="@item.Id"><i class="fa fa-search"></i></a>				
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
 
 @section Scripts {

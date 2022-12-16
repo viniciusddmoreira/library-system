@@ -1,7 +1,7 @@
 ﻿@model LibrarySystem.Data.Models.Book
 
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Edit";
 }
 
 <h1>Alterar Livro</h1>
@@ -9,14 +9,14 @@
 <h4>As informações para alteração do livro se encontram abaixo</h4>
 <hr />
 <div>
-	<a class="btn btn-primary" asp-action="Index">Voltar </a>
+	<a asp-action="Index" class="btn btn-primary"><i class="fa-regular fa-circle-left"></i> Voltar</a>
 </div>
 <br />
 <div class="row">
-    <div class="col-md">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+	<div class="col-md">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Id" />
 			<div class="card">
 				<div class="card-header">Informações do livro</div>
 				<div class="card-body">
@@ -59,12 +59,16 @@
 			</div>
 			<br />
 			<div class="form-group">
-				<input type="submit" value="Salvar" class="btn btn-success" />
+				<button type="submit" class="btn btn-success">
+					<i class="fa-regular fa-floppy-disk"></i> Salvar
+				</button>
 			</div>
-        </form>
-    </div>
+		</form>
+	</div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

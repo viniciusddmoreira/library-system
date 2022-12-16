@@ -39,12 +39,12 @@ namespace LibrarySystem.Data.Models
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.BooksLoans)
                     .HasForeignKey(d => d.BookId)
-                    .HasConstraintName("FK_books_customers_loan_books");
+                    .HasConstraintName("FK__books_loa__book___49C3F6B7");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.BooksLoans)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_books_customers_loan_customers");
+                    .HasConstraintName("FK__books_loa__custo__4AB81AF0");
             });
 
             modelBuilder.Entity<VwBooksLoan>(entity =>

@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,18 @@ namespace LibrarySystem.Data.Models
         [Column("id")]
         public int Id { get; set; }
         [Column("book_id")]
-        public int? BookId { get; set; }
+        public int BookId { get; set; }
         [Column("customer_id")]
-        public int? CustomerId { get; set; }
+        public int CustomerId { get; set; }
         [Column("loan_date", TypeName = "datetime")]
-        public DateTime? LoanDate { get; set; }
+        [DisplayName("Data do Empréstimo")]
+        public DateTime LoanDate { get; set; }
         [Column("delivery_date", TypeName = "datetime")]
-        public DateTime? DeliveryDate { get; set; }
+        [DisplayName("Data da Devolução")]
+        public DateTime DeliveryDate { get; set; }
         [Column("returned")]
-        public bool? Returned { get; set; }
+        [DisplayName("Livro Entregue")]
+        public bool Returned { get; set; }
 
         [ForeignKey("BookId")]
         [InverseProperty("BooksLoans")]

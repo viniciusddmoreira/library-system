@@ -24,9 +24,8 @@ namespace LibrarySystem.Web.Controllers
 			loanViewModel.ListBook = listBook;
 			loanViewModel.ListCustomer = listCustomer;
 
-			//loanViewModel.BooksLoanProp = new BooksLoan();
 			loanViewModel.LoanDate = DateTime.Now;
-			loanViewModel.DeliveryDate = DateTime.Now.AddDays(7);			
+			loanViewModel.DeliveryDate = DateTime.Now.AddDays(7);		
 
 			return View(loanViewModel);
 		}
@@ -46,5 +45,31 @@ namespace LibrarySystem.Web.Controllers
 			return RedirectToAction("Index");
 
 		}
-	}
+
+		public IActionResult Details(int id)
+		{
+			VwBooksLoan vwBooksLoan = _serviceLoan.RepositoryVwBooksLoanProp.GetPrimaryKey(id);
+
+			return View(vwBooksLoan);
+		}
+
+		public IActionResult Edit(int id) 
+		{		
+			BooksLoan booksLoan = _serviceLoan.RepositoryBooksLoanProp.GetPrimaryKey(id);
+
+			return View(booksLoan);
+		}
+
+		[HttpPost]
+		public IActionResult Edit(BooksLoan booksLoan)
+		{
+			if (ModelState.IsValid)
+			{
+				BooksLoan editBooksLoan = _serviceLoan.RepositoryBooksLoanProp.Edit(booksLoan);
+				return RedirectToAction("Index");
+			}
+
+			return View();
+		}
+    }
 }
