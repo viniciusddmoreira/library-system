@@ -30,7 +30,7 @@ empréstimos, e também devoluções.
 sendo elas: CPF do cliente, nome do cliente, nome do livro, data de empréstimo,
 data de devolução.
 
-# Tecnologia Utilizadas
+# Tecnologias Utilizadas
 
 As seguintes tecnologias foram utilizadas:
 
@@ -44,7 +44,7 @@ As seguintes tecnologias foram utilizadas:
 - Bootstrap v5.2.3
 - Git
 
-O projeto foi separado LibrarySystem.Web, que seria a camada de apresentação 
+O projeto foi separado em LibrarySystem.Web, que seria a camada de apresentação 
 com o projeto MVC; e em LibrarySystem.Data, onde se localizam as camadas referentes 
 aos dados do serviço, com modelos de domínio, repositórios e configurações do banco 
 de dados.  
