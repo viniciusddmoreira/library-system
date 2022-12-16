@@ -55,9 +55,6 @@ banco de dados, aumentando a produtividade durante o desenvolvimento. O mesmo se
 ao EF Core Power Tools, que com a abordagem *Database First* permite que os models
 sejam gerados a partir de um diagrama entidade-relacionamento.  
 
-Foi implementado um workflow de Github Actions com uma task de integração contínua 
-realizando build do sistema, garantindo a qualidade do projeto, validando a possibilidade de 
-compilação sempre que um novo  commit é feito na branch master, ou um PR é aberto em qualquer branch.
 Por fim, o Git foi utilizado como ferramenta de versionamento durante todo o desenvolvimento.
 
 # Telas
